@@ -1,7 +1,7 @@
 import jax.numpy as jnp
 from jax.scipy.linalg import solve_triangular
 from jax.numpy.linalg import cholesky #looks like numpy cholesky is more stable
-from model import score, grad_f
+from kprior.model import score, grad_f
 
 def levergeScore(W,X, delta=1):
   J_x = grad_f(W, X) 
