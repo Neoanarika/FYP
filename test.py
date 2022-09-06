@@ -1,7 +1,5 @@
 import jax.numpy as jnp
-from jax import random 
-from model import Phi, kprior, loss_map_grad, loss_kprior_grad
-from dataset import make_linearly_seperable_dataset
+from kprior.model import kprior, loss_map_grad, loss_kprior_grad
 
 def test_train_to_converge(X, Y, W1, lvl=0.001):
   grad = loss_map_grad(X, Y, W1)
