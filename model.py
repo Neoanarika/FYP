@@ -121,3 +121,16 @@ loss = lambda X, Y, M, W, W_prior, delta=0.2: celoss(H(W, X), Y) + kprior(W, M, 
 loss_map_grad = jit(grad(loss_map, argnums=2))
 loss_grad = jit(grad(loss, argnums=3))
 loss_kprior_grad = jit(grad(kprior, argnums=0))
+
+def optimiser(X, Y, W_0, W_prior=None, M=None, lr=0.01, n_iter=1000, delta= 0.2, error_level=0.001):
+  """
+  Trains the model using gradient descent
+  """
+  for i in tqdm(range(n_iter)):
+    if M is None and W_prior is None:
+      W_0 = W_0 - lr*loss_map_grad(X, Y, W_0, delta=delta)
+    else:
+      out = loss_grad(X, Y, M, W_0, W_prior, delta=delta)
+      W_0 = W_0 - lr*out
+
+  return W_0
