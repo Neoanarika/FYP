@@ -2,7 +2,7 @@ import jax
 import jax.numpy as jnp
 from jax.nn import sigmoid
 from jax import grad, jit
-
+from tqdm.notebook import tqdm
 def f(params, x):
   return params.T @ x
 
