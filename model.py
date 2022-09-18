@@ -117,6 +117,11 @@ def score(W,X):
   lamb = dsigmoid(preds)
   return lamb
 
+def make_residual(Y):
+  loss = lambda preds: celoss(preds, Y)
+  residuals = jit(grad(loss, argnums=0))
+  return residuals
+
 loss = lambda X, Y, M, W, W_prior, delta=0.2: celoss(H(W, X), Y) + kprior(W, M, W_prior, delta=delta)
 loss_map_grad = jit(grad(loss_map, argnums=2))
 loss_grad = jit(grad(loss, argnums=3))
