@@ -1,3 +1,3 @@
 # kprior-jax 
 
-## Experiementing with kpriors
+Images can be generated from the ipynb notebook. 
